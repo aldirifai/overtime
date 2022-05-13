@@ -1,0 +1,258 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Dokumentasi API Sistem Perhitungan Lembur",
+        "description": "Dokumentasi API dari project Sistem Perhitungan Lembur (overtime)",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "aldibogem@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/employees": {
+            "post": {
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Menambahkan data karyawan baru",
+                "description": "Menambahkan data karyawan baru",
+                "operationId": "bfad4edec29b0edbd684a0afbd847510",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Isi dengan nama karyawan",
+                        "required": true,
+                        "example": "Nama 1"
+                    },
+                    {
+                        "name": "salary",
+                        "in": "query",
+                        "description": "Isi dengan nama gaji karyawan rentang 3000000 - 10000000",
+                        "required": true,
+                        "example": "3000000"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data karyawan berhasil ditambahkan."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/overtimes": {
+            "post": {
+                "tags": [
+                    "Overtime"
+                ],
+                "summary": "Menambahkan data lembur",
+                "description": "Menambahkan data lembur",
+                "operationId": "1c0aaebff4e157c86d9b7197cb202612",
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "query",
+                        "description": "Isi dengan employee_id",
+                        "required": true,
+                        "example": "1"
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Isi dengan tanggal lembur format YYYY-MM-DD",
+                        "required": true,
+                        "example": "2020-01-01"
+                    },
+                    {
+                        "name": "time_started",
+                        "in": "query",
+                        "description": "Isi dengan jam mulai lembur format HH:mm",
+                        "required": true,
+                        "example": "08:00"
+                    },
+                    {
+                        "name": "time_ended",
+                        "in": "query",
+                        "description": "Isi dengan jam selesai lembur format HH:mm",
+                        "required": true,
+                        "example": "10:00"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data overtime berhasil ditambahkan."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/overtime-pays/calculate": {
+            "get": {
+                "tags": [
+                    "Overtime Pay"
+                ],
+                "summary": "Menampilkan hasil perhitungan lembur",
+                "description": "Menampilkan hasil perhitungan dari lembur yang ada pada setiap employees, berdasarkan bulan yang ditentukan, tanpa format pagination",
+                "operationId": "e85190e0f0370f6f6ccd6a3362f842dc",
+                "parameters": [
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "Bulan yang akan dihitung format YYYY-MM",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 6
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "John Doe"
+                                        },
+                                        "salary": {
+                                            "type": "integer",
+                                            "example": "3000000"
+                                        },
+                                        "overtimes": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "employee_id": {
+                                                        "type": "integer",
+                                                        "example": 6
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "example": "2022-01-01"
+                                                    },
+                                                    "time_started": {
+                                                        "type": "string",
+                                                        "example": "09:00"
+                                                    },
+                                                    "time_ended": {
+                                                        "type": "string",
+                                                        "example": "18:00"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "overtime_duration_total": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "overtime_amount": {
+                                            "type": "integer",
+                                            "example": "48555"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/settings": {
+            "patch": {
+                "tags": [
+                    "Setting"
+                ],
+                "summary": "Mengubah setting",
+                "description": "Mengubah setting",
+                "operationId": "c2e26f7ef1d9147d9cc3fd80807444a4",
+                "parameters": [
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "description": "Hanya bisa diisi 'overtime_method'",
+                        "required": true,
+                        "example": "overtime_method"
+                    },
+                    {
+                        "name": "value",
+                        "in": "query",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Setting berhasil diupdate."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
