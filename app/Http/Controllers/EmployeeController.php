@@ -25,7 +25,7 @@ class EmployeeController extends Controller
      *         in="query",
      *         required=true,
      *        example="3000000",
-     *        description="Isi dengan nama gaji karyawan rentang 3000000 - 10000000",
+     *        description="Isi dengan nama gaji karyawan rentang 2000000 - 10000000",
      *      ),
      * @OA\Response(
      *        response=200,
