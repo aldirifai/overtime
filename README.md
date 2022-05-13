@@ -7,57 +7,90 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Cara Install
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Ekstrak File dan Buka Terminal di dalam Forder Project
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Download file project, ekstrak terlebih dahulu kemudian masuk ke dalam folder project dan buka terminal, cmd, git ataupun software sejenis. Pastikan terminal sudah mengarah ke folder project.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Install Semua Dependensi yang Dibutuhkan
 
-## Learning Laravel
+```bash
+composer install
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Buat Database Baru
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Buat database sebagai tempat penyimpanan sistem ini
 
-## Laravel Sponsors
+### Copy .env.example to .env
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Copy file .env.example ke .env
 
-### Premium Partners
+```bash
+cp .env.example .env
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Setting Database di File .env
 
-## Contributing
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database
+DB_USERNAME=username
+DB_PASSWORD=password
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Migrasi Database
 
-## Code of Conduct
+Migrasi semua table dan data yang sudah disediakan
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan migrate --seed
+```
 
-## Security Vulnerabilities
+### Generate Key Aplikasi
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan key:generate
+```
+
+### Generate Swagger Documentation
+
+```bash
+php artisan l5-swagger:generate
+```
+
+### Jalankan Aplikasi
+
+```bash
+php artisan serve
+```
+
+## Dokumentasi API dan Testing
+
+### Mengakses Dokumentasi API
+
+Untuk melihat dokumentasi API pastikan aplikasi sudah berjalan atau jika belum maka jalankan aplikasi terlebih dahulu menggunakan perintah dibawah
+
+```bash
+php artisan serve
+```
+
+Untuk mengkses dokumentasi silakan salin URL berikut ke browser anda
+
+```bash
+http://127.0.0.1:8000/api/documentation
+```
+
+### Menjalankan Testing
+
+Testing pada project ini menggunakan PHP Unit, untuk menjalankan tenting salin perintah berikut ke terminal anda
+
+```bash
+php artisan test
+```
 
 ## License
 
