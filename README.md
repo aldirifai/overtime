@@ -11,7 +11,7 @@
 
 ### Ekstrak File dan Buka Terminal di dalam Forder Project
 
-Download file project, ekstrak terlebih dahulu kemudian masuk ke dalam folder project dan buka terminal, cmd, git ataupun software sejenis. Pastikan terminal sudah mengarah ke folder project.
+Download file project, ekstrak terlebih dahulu kemudian masuk ke dalam folder project dan buka terminal / cmd / git ataupun software sejenis. Pastikan terminal sudah mengarah ke folder project.
 
 ### Install Semua Dependensi yang Dibutuhkan
 
@@ -21,7 +21,7 @@ composer install
 
 ### Buat Database Baru
 
-Buat database sebagai tempat penyimpanan sistem ini
+Buat database sebagai tempat penyimpanan aplikasi ini
 
 ### Copy .env.example to .env
 
@@ -86,7 +86,7 @@ http://127.0.0.1:8000/api/documentation
 
 ### Menjalankan Testing
 
-Testing pada project ini menggunakan PHP Unit, untuk menjalankan tenting salin perintah berikut ke terminal anda
+Testing pada project ini menggunakan PHP Unit, untuk menjalankan testing salin perintah berikut ke terminal anda
 
 ```bash
 php artisan test
