@@ -59,7 +59,7 @@ class CalculateOvertime
                 'id' => $item->id,
                 'name' => $item->name,
                 'salary' => $item->salary,
-                'overtimes' => $item->overtimes->each(function ($over) {
+                'overtimes' => $item->overtimes($month)->each(function ($over) {
                     $over->overtime_duration = $over->overtime_duration();
                     return $over;
                 }),

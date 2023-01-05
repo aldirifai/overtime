@@ -26,10 +26,13 @@ class OvertimeRequest extends FormRequest
     {
         return [
             'employee_id' => 'required|integer|exists:employees,id',
-            'date' => Rule::unique('overtimes')->where(function ($query) {
-                $query->where('employee_id', $this->employee_id);
-                $query->where('date', $this->date);
-            }) . 'required|date_format:Y-m-d',
+            'date' => [
+                'required',
+                'date',
+                Rule::unique('overtimes')->where(function ($query) {
+                    return $query->where('employee_id', $this->employee_id);
+                }),
+            ],
             'time_started' => 'required|date_format:H:i|before:time_ended',
             'time_ended' => 'required|date_format:H:i|after:time_started',
         ];
@@ -41,6 +44,7 @@ class OvertimeRequest extends FormRequest
             'employee_id.required' => 'Parameter employee_id wajib diisi.',
             'employee_id.integer' => 'Parameter employee_id harus berupa angka.',
             'employee_id.exists' => 'Parameter employee_id tidak ditemukan.',
+            'date.required_if' => 'Parameter date wajib diisi.',
             'date.required' => 'Parameter date wajib diisi.',
             'date.date' => 'Parameter date harus berupa tanggal.',
             'date.unique' => 'Tanggal sudah ada.',
